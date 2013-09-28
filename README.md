@@ -17,7 +17,8 @@ Build Instruction
   * Secrets for Google Authenticator is already base32 encoded. just use it as
   * Battle.net OTP Secret can be obtained by using python-bna(https://github.com/Adys/python-bna)
     * python-bna saves secret in "~/.config/bna/bna.conf". this secret is hexlified. you should unhexlify and base32 encode it.
-```python
+  
+  ```python
 import base64, binascii
 print base64.b32encode(binascii.unhexlify('YOUR_BATTLE_NET_SECRET'))
 ```
@@ -27,7 +28,8 @@ print base64.b32encode(binascii.unhexlify('YOUR_BATTLE_NET_SECRET'))
     * `secret` is your base32 encoded secret.
     * `description` is description.
     * You want to add more OTP, just expand OTP_INFO variable. here is an example.
-```c
+
+  ```c
 OTPInfo OTP_INFO[] = {
   {
     .type = totpGoogle,
