@@ -1,0 +1,16 @@
+{
+    "media": [
+        {
+            "defName": "APP_ICON",
+            "type": "png",
+            "file": "images/ICON.png"
+        },
+        {
+            "defName": "BUTTONS",
+            "type": "png",
+            "file": "images/BUTTON.png"
+        }
+    ],
+    "friendlyVersion": "VERSION",
+    "versionDefName": "APP_RESOURCES"
+}
