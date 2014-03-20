@@ -1,7 +1,6 @@
-#define _GNU_SOURCE
-
-#include <stdint.h>
+#include "stdint_.h"
 #include "totp.h"
+#include "pebble_os.h"
 #include "base32.h"
 #include "hmac.h"
 #include "sha1.h"

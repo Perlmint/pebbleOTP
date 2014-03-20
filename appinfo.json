@@ -1,0 +1,30 @@
+{
+    "versionLabel": "1.0",
+    "uuid": "321ed8a2-0a4f-4f17-ba4d-1e7affb527d5",
+    "appKeys": {},
+    "longName": "Pebble OTP",
+    "versionCode": 1,
+    "capabilities": [
+        "configurable"
+    ],
+    "shortName": "pOTP",
+    "companyName": "omniavinco",
+    "watchapp": {
+        "watchface": false
+    },
+    "resources": {
+        "media": [
+            {
+                "type": "png",
+                "name": "BUTTONS",
+                "file": "images/BUTTON.png"
+            },
+            {
+                "menuIcon": true,
+                "type": "png",
+                "name": "APP_ICON",
+                "file": "images/ICON.png"
+            }
+        ]
+    }
+}
