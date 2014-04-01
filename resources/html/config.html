@@ -3,17 +3,90 @@
   <head>
     <title></title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script>
+        window.otpList = $('ul[data-name="otpList"]').listview();
+        $('#googleOTPForm').submit(function (event) {
+          if ($('#googleOTPForm input[name="description"]').val().trim().length == 0) {
+            event.preventDefault();
+            alert("Need Description");
+            return;
+          }
+          if ($('#googleOTPForm input[name="secret"]').val().trim().length == 0) {
+            event.preventDefault();
+            alert("Need ValidSecret");
+            return;
+          }
+          window.otpList.append($('<li/>', {
+          }).append($('<a/>', {
+            "href": "#",
+            "text": $('#googleOTPForm input[name="description"]').val().trim()
+          })).append($('<a/>', {
+            "href": "#",
+            "class": "delete",
+            "text": "Delete"
+          })));
+          $('#googleOTPForm input').val('');
+          window.otpList.listview("refresh");
+        });
+      });
+    </script>
   </head>
   <body>
-    <div data-role="page" id="main">
+    <div data-role="page" data-theme="b">
       <div data-role="header">
         <h1>Pebble OTP</h1>
-        <button></button>
+        <a href="#addOTP" class="ui-btn ui-btn-a ui-btn-inline" data-rel="dialog">Add OTP</a>
+      </div>
+      <div role="main" class="ui-content">
+        <ul data-role="listview" class="touch" data-inset="true" data-split-icon="delete" data-split-theme="d" data-name="otpList">
+          <li>
+            <a href="#">hello</a>
+            <a href="#" class="delete">Delete</a>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div data-role="dialog" id="addOTP" data-corners="false">
+      <div data-role="header">
+        <h1>OTP Type</h1>
       </div>
       <div data-role="content">
-        <ol id="otp_list">
-        </ol>
+        <a href="#addGoogleOTP" class="ui-btn" data-rel="dialog">Google</a>
+        <a href="#addBattlenetOTP" class="ui-btn" data-rel="dialog">Battle.net</a>
+      </div>
+    </div>
+    <div data-role="dialog" id="addGoogleOTP">
+      <div data-role="header">
+        <h1>Google OTP</h1>
+      </div>
+      <div data-role="content">
+        <form id="googleOTPForm">
+          <label for="desc" class="ui-hidden-accessible">Description : </label>
+          <input type="text" name="description" id="desc" value="" placeholder="Description (ex. Github)" />
+          <label for="sec" class="ui-hidden-accessible">Secret : </label>
+          <input type="text" name="secret" id="sec" value="" placeholder="Secret (ex. ABCD1234)" />
+          <button>Add</button>
+        </form>
+      </div>
+    </div>
+    <div data-role="dialog" id="addBattlenetOTP">
+      <div data-role="header">
+        <h1>Battle.net OTP</h1>
+      </div>
+      <div data-role="content">
+        <form id="battlenetOTPForm">
+          <label for="desc" class="ui-hidden-accessible">Description : </label>
+          <input type="text" name="description" id="desc" value="" placeholder="Description (ex. blizzard@battle.net)" />
+          <label for="ser" class="ui-hidden-accessible">Secret : </label>
+          <input type="text" name="serial" id="ser" value="" placeholder="Serial (ex. US-1234-ABCD-45EF)" />
+          <label for="rest" class="ui-hidden-accessible">Secret : </label>
+          <input type="text" name="restorecode" id="rest" value="" placeholder="Restore Code (ex. 12345ABCDE)" />
+          <button>Add</button>
+        </form>
       </div>
     </div>
   </body>
