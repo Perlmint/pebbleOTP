@@ -5,5 +5,5 @@ Pebble.addEventListener("ready", function() {
 });
 
 Pebble.addEventListener("showConfiguration", function() {
-	Pebble.openURL('');
+	Pebble.openURL('http://omniavinco.github.io/pebbleOTP/config.html');
 });
