@@ -1,20 +1,36 @@
 #pragma once
 #include "stdint_.h"
+#include <time.h>
 
-typedef enum {
+enum totpType_t {
   totpGoogle = 0,
   totpBattlenet = 1,
   totpTypeCount
-} totpType_t;
+};
 
-typedef struct {
+struct totpInfo_t {
   uint8_t seconds;
   uint8_t digit;
   uint8_t offset;
-} totpInfo_t;
+  const char *format;
+};
 
-uint32_t generateCode(const char *secret, totpType_t type, int8_t *remainTime);
+struct otpInfo_t {
+  enum totpType_t func;
+  uint16_t secretLength;
+  uint8_t *secret;
+  char *description;
+  char *currentCode;
+  uint16_t remainTime;
+};
 
-extern totpInfo_t totpInfo[totpTypeCount];
-extern float TIMEZONE_MAP[40];
-extern uint8_t TIMEZONE;
+struct otpInfoList_t {
+  uint32_t count;
+  struct otpInfo_t *infos;
+};
+
+void generateCode(struct otpInfo_t *otpInfo, const time_t currentTime);
+uint8_t getOTPCodeLength(const enum totpType_t type);
+
+extern struct totpInfo_t totpInfo[totpTypeCount];
+extern struct otpInfoList_t otpInfoList;
